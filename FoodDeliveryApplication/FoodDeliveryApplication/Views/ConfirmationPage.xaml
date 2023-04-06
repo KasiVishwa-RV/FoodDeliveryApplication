@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:models="clr-namespace:FoodDeliveryApplication.Models"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodDeliveryApplication.Views.ConfirmationPage"
+             x:Name="confirmationPage">
+    <Grid Margin="20,10"
+          RowDefinitions="30*,20*,40*,10*">
+        <CollectionView  Grid.Row="0"
+                         ItemsSource="{Binding CartList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:FoodCartModel">
+                    <Frame BackgroundColor="White"
+                           Margin="20,10">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding FoodProductName}"
+                                   TextColor="Black"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label Text="{Binding FoodProductDescription}"
+                                   VerticalOptions="CenterAndExpand"
+                                   TextColor="Black"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label VerticalOptions="CenterAndExpand"
+                                   TextColor="Black"
+                                   HorizontalOptions="CenterAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Price" />
+                                        <Span Text=" : " />
+                                        <Span Text="{Binding FoodProductPrice}" />
+                                        <Span Text=" $" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="Remove"
+                                    TextColor="Black"
+                                    BackgroundColor="#EB5406"
+                                    Command="{Binding BindingContext.RemoveCommand,Source={x:Reference confirmationPage}}"
+                                    CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       Text="No Products Added"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       TextColor="Black" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+        <Frame Grid.Row="1">
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="60*,40*">
+                <Label Grid.Row="0"
+                       TextColor="Black"
+                       Grid.Column="0"
+                       Text="TotalProducts" />
+                <Label Grid.Row="1"
+                       TextColor="Black"
+                       Grid.Column="0"
+                       Text="TotalCost" />
+                <Label Grid.Row="0"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Text="{Binding CartList.Count}" />
+                <Label Grid.Row="1"
+                       TextColor="Black"
+                       Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Price" />
+                            <Span Text=" : " />
+                            <Span Text="{Binding TotalCost}" />
+                            <Span Text=" $" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="2">
+            <StackLayout>
+                <Entry Text="{Binding Address}" />
+                <Button Text="Find Location"
+                        Command="{Binding FindLocationCommand}" />
+                <Button Text="Find My Location"
+                        Command="{Binding FindUserLocationCommand}" />
+                <Label TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Address" />
+                            <Span Text=" : " />
+                            <Span Text="{Binding UserLocation}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <maps:Map IsShowingUser="True"
+                          MapType="Hybrid"
+                          HasZoomEnabled="True">
+                </maps:Map>
+            </StackLayout>
+        </Frame>
+        <Frame Grid.Row="3"
+               Padding="0"
+               BackgroundColor="LimeGreen">
+            <Label Text="Confirm Location and Pay"
+                   Padding="0"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding PayCommand}" />
+            </Frame.GestureRecognizers>
+        </Frame>
+    </Grid>
+</ContentPage>

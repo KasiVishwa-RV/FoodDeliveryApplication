@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodDeliveryApplication.Views.LoginPage">
+    <Grid RowDefinitions="40*,60*">
+        <Frame Grid.Row="0"
+               BackgroundColor="White"
+               BorderColor="White">
+            <Image Source="https://static.toiimg.com/photo/msid-81923053/81923053.jpg"
+                   Aspect="AspectFit"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand">
+            </Image>
+        </Frame>
+        <Frame Grid.Row="1"
+               Margin="0,-25,0,-50"
+               CornerRadius="50"
+               BackgroundColor="Navy">
+            <Grid RowDefinitions="50*,Auto,25*">
+                <Frame VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       WidthRequest="300"
+                       HeightRequest="120"
+                       CornerRadius="40">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Entry Text="{Binding Username}"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               Placeholder="Enter Username" />
+                        <Entry Text="{Binding Password}"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               Placeholder="Enter Password"
+                               IsPassword="True" />
+                    </StackLayout>
+                </Frame>
+                <Button Grid.Row="1"
+                        Text="Login"
+                        BackgroundColor="LightGreen"
+                        Margin="60,0"
+                        Command="{Binding LoginCommand}" />
+                <Label Grid.Row="2"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Start"
+                       Padding="0"
+                       FontSize="Subtitle"
+                       Margin="0,10"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       TextDecorations="Underline"
+                       Text="New User?">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SignupCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

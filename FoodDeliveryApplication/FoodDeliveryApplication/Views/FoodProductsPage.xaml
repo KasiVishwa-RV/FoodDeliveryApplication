@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:models="clr-namespace:FoodDeliveryApplication.Models"
+             NavigationPage.HasBackButton="False"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodDeliveryApplication.Views.FoodProductsPage"
+             x:Name="foodProductsPage">
+    <NavigationPage.TitleView>
+        <Image Source="https://cdn3.vectorstock.com/i/1000x1000/96/82/logout-icon-vector-21679682.jpg"
+               Aspect="AspectFit"
+               HeightRequest="70"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="End">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+    </NavigationPage.TitleView>
+    <Grid RowDefinitions="90*,10*">
+        <CollectionView Grid.Row="0"
+                        ItemsSource="{Binding FoodProductList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:FoodProductModel">
+                    <Frame>
+                        <StackLayout>
+                            <Image Source="{Binding FoodImage}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="80"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label Text="{Binding FoodName}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   TextColor="Black"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   TextColor="Black">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Price" />
+                                        <Span Text=" : " />
+                                        <Span Text="{Binding FoodPrice}" />
+                                        <Span Text=" $" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{Binding FoodDescription}"
+                                   FontAttributes="None"
+                                   TextColor="Black"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   FontSize="Caption" />
+                            <Button Text="Add To Cart"
+                                    BackgroundColor="Black"
+                                    TextColor="Red"
+                                    FontAttributes="Bold"
+                                    Command="{Binding BindingContext.AddToCartCommand,Source={x:Reference foodProductsPage}}"
+                                    CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="1"
+                Text="Confirm Selection"
+                FontAttributes="Italic"
+                Command="{Binding ConfirmCartCommand}"
+                BackgroundColor="MediumSeaGreen" />
+    </Grid>
+</ContentPage>

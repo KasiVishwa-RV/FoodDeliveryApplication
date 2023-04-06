@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodDeliveryApplication.Views.SignupPage">
+    <Grid RowDefinitions="40*,60*">
+        <Frame Grid.Row="0"
+               BackgroundColor="White"
+               BorderColor="White">
+            <Image Source="https://cdn3.vectorstock.com/i/1000x1000/28/82/food-delivery-vector-6252882.jpg"
+                   Aspect="AspectFit"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand">
+            </Image>
+        </Frame>
+        <Frame Grid.Row="1"
+               Margin="0,-25,0,-50"
+               CornerRadius="50"
+               BackgroundColor="Moccasin">
+            <Grid RowDefinitions="Auto,Auto">
+                <Frame VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       WidthRequest="300"
+                       HeightRequest="150"
+                       CornerRadius="40">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Entry Text="{Binding Username}"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               Placeholder="Enter Username" />
+                        <Entry Text="{Binding Password}"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               Placeholder="Enter Password"
+                               IsPassword="True" />
+                        <Entry Placeholder="Re-Enter Password"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               IsPassword="True" />
+                    </StackLayout>
+                </Frame>
+                <Button Grid.Row="1"
+                        Text="Signup"
+                        VerticalOptions="CenterAndExpand"
+                        BackgroundColor="OrangeRed"
+                        Margin="60,0"
+                        Command="{Binding SignupCommand}" />
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>
