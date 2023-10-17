@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FoodDeliveryApplication\FoodDeliveryApplication.Android\FoodDeliveryApplication.Android.csproj" />
     <ProjectReference Include="..\FoodDeliveryApplication\FoodDeliveryApplication\FoodDeliveryApplication.csproj" />
   </ItemGroup>
 
