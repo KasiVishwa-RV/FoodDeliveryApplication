@@ -5,25 +5,25 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="FoodDeliveryApplication.Views.LoginPage">
     <Grid RowDefinitions="40*,60*">
-        <Frame Grid.Row="0"
+        <Frame Grid.Row="0" Padding="0" Margin="0"
                BackgroundColor="White"
-               BorderColor="White">
-            <Image Source="https://static.toiimg.com/photo/msid-81923053/81923053.jpg"
-                   Aspect="AspectFit"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand">
+               BorderColor="Transparent">
+            <Image Source="https://www.jotform.com/blog/wp-content/uploads/2020/05/How-to-start-a-food-delivery-business.png"
+                   Aspect="Fill"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand">
             </Image>
         </Frame>
         <Frame Grid.Row="1"
                Margin="0,-25,0,-50"
                CornerRadius="50"
-               BackgroundColor="Navy">
+               BackgroundColor="#79CBCA">
             <Grid RowDefinitions="50*,Auto,25*">
                 <Frame VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        WidthRequest="300"
                        HeightRequest="120"
-                       CornerRadius="40">
+                       CornerRadius="40" BorderColor="White" HasShadow="False" BackgroundColor="#79CBCA">
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <Entry Text="{Binding Username}"
                                PlaceholderColor="Black"
@@ -39,7 +39,7 @@
                 <Button Grid.Row="1"
                         Text="Login"
                         BackgroundColor="LightGreen"
-                        Margin="60,0"
+                        Margin="60,5"
                         Command="{Binding LoginCommand}" />
                 <Label Grid.Row="2"
                        HorizontalOptions="CenterAndExpand"
